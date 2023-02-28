@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_validacion_formularios/models/models.dart';
 import 'package:flutter_validacion_formularios/screens/screens.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_validacion_formularios/services/services.dart';
@@ -29,7 +30,12 @@ class HomeScreen extends StatelessWidget {
                     product: productsService.products[index],
                   ),
                 )),
-        floatingActionButton:
-            FloatingActionButton(child: Icon(Icons.add), onPressed: () {}));
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              productsService.selectedProduct =
+                  new Product(available: false, name: '', price: 0);
+              Navigator.pushNamed(context, 'product');
+            }));
   }
 }
